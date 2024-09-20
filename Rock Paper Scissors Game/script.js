@@ -16,6 +16,15 @@ function getRandomComputerResult() {
       return false;
     }
   }
+
+  //kode asli freecodecamp
+  function hasPlayerWonTheRound(player, computer) {
+    return (
+      (player === "Rock" && computer === "Scissors") ||
+      (player === "Scissors" && computer === "Paper") ||
+      (player === "Paper" && computer === "Rock")
+    );
+  }
   
   //console.log(hasPlayerWonTheRound("Rock", "Scissors")); 
   //console.log(hasPlayerWonTheRound("Scissors", "Rock")); 
