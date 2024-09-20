@@ -34,7 +34,7 @@ function getRandomComputerResult() {
     }
   }
 
-//kode asli dari freecodecamp pake ternary iteration
+//kode asli dari freecodecamp pake template literal
 function getRoundResults(userOption) {
   const computerResult = getRandomComputerResult();
 
