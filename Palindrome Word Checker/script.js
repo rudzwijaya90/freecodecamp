@@ -11,42 +11,12 @@ const isAlphanumericPalindrome = function(str) {
     return filteredStr === reversedStr;
 };
 
-
+//Instead doing this, I was typing all else if 
 const checkInput = input => {
     if (input === ""){
         alert("Please input a value");
         return;
-    } else if(input === "A"){
-        //alert("A is a palindrome");
-        resultElement.textContent = "A is a palindrome";
-    } else if(input === "eye"){
-        //alert("eye is a palindrome");
-        resultElement.textContent = "eye is a palindrome";
-    } else if(input === "_eye"){
-        //alert("_eye is a palindrome");
-        resultElement.textContent = "_eye is a palindrome";
-    } else if(input === "race car"){
-        //alert("race car is a palindrome");
-        resultElement.textContent = "race car is a palindrome";
-    } else if(input === "not a palindrome"){
-        resultElement.textContent = "not a palindrome is not a palindrome";
-    } else if(input === "A man, a plan, a canal. Panama"){
-        resultElement.textContent = "A man, a plan, a canal. Panama is a palindrome";
-    } else if(input === "never odd or even"){
-        resultElement.textContent = "never odd or even is a palindrome";
-    } else if(input === "nope"){
-        resultElement.textContent = "nope is not a palindrome";
-    } else if(input === "almostomla"){
-        resultElement.textContent = "almostomla is not a palindrome";
-    } else if(input === "My age is 0, 0 si ega ym."){
-        resultElement.textContent = "My age is 0, 0 si ega ym. is a palindrome";
-    } else if(input === "1 eye for of 1 eye."){
-        resultElement.textContent = "1 eye for of 1 eye. is not a palindrome";
-    } else if(input === "0_0 (: /-\ :) 0-0"){
-        resultElement.textContent = "0_0 (: /-\ :) 0-0 is a palindrome";
-    } else if(input === "five|\_/|four"){
-        resultElement.textContent = "five|\_/|four is not a palindrome";
-    } else if(isAlphanumericPalindrome(input)) {
+    }  else if(isAlphanumericPalindrome(input)) {
         alert(`${input} is an alphanumeric palindrome`);
         resultElement.textContent = `${input} is a palindrome`;
     } else {
