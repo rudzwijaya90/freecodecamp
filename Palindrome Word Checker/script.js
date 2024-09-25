@@ -11,7 +11,7 @@ const isAlphanumericPalindrome = function(str) {
     return filteredStr === reversedStr;
 };
 
-//Instead doing this, I was typing all else if 
+//Instead of doing this, I was typing all else if 
 const checkInput = input => {
     if (input === ""){
         alert("Please input a value");
