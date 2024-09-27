@@ -174,8 +174,9 @@ const myFavoriteFootballTeam = {
 Object.freeze(myFavoriteFootballTeam); //freeze the object and prevent any changes being made to it
 
 //access the key sport from myFavoriteFootballTeam object using dot notation
-//const sport = myFavoriteFootballTeam.sport;
-//const team = myFavoriteFootballTeam.team;
+/* const sport = myFavoriteFootballTeam.sport;
+const team = myFavoriteFootballTeam.team; */
+
 
 //replace above 2 const with object destructuring syntax 
 const {team, sport} = myFavoriteFootballTeam;
