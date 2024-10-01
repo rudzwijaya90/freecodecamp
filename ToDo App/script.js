@@ -15,6 +15,46 @@ const taskData = [];
 
 let currentTask = {};
 
+const addOrUpdateTask = () => {
+    const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
+    const taskObj = {
+      id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
+      title: titleInput.value,
+      date: dateInput.value,
+      description: descriptionInput.value,
+    };
+  
+    if (dataArrIndex === -1) {
+      taskData.unshift(taskObj);
+    }
+    updateTaskContainer();
+    reset();
+  };
+
+const updateTaskContainer = () => {
+    tasksContainer.innerHTML = "";
+    taskData.forEach(
+        ({ id, title, date, description }) => {
+            tasksContainer.innerHTML += `
+            <div class="task" id="${id}">
+              <p><strong>Title:</strong> ${title}</p>
+              <p><strong>Date:</strong> ${date}</p>
+              <p><strong>Description:</strong> ${description}</p>
+              <button type="button" class="btn" onclick="editTask(this)">Edit</button>
+              <button type="button" class="btn" onclick="deleteTask(this)">Delete</button>
+            </div>
+          `
+        }
+      );
+};
+
+const deleteTask = (buttonEl) => {
+    //findIndex()method takes a function as an argument, which we commonly refer to as a callback function. That means that everything inside the parens for the findIndex argument must be a function.
+    const dataArrIndex = taskData.findIndex(item  => item.id === buttonEl.parentElement.id)
+    buttonEl.parentElement.remove();
+    taskData.splice(dataArrIndex, 1);
+};
+
 const reset = () => {
   titleInput.value = "";
   dateInput.value = "";
@@ -29,7 +69,13 @@ openTaskFormBtn.addEventListener("click", () => {
   });
 
 closeTaskFormBtn.addEventListener("click", () => {
-    confirmCloseDialog.showModal();
+    const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
+    //confirmCloseDialog.showModal();
+    if (formInputsContainValues){
+        confirmCloseDialog.showModal();
+    } else {
+        reset();
+    }
   });
 
 cancelBtn.addEventListener("click", () => {
@@ -38,13 +84,13 @@ cancelBtn.addEventListener("click", () => {
 
 discardBtn.addEventListener('click', () => {
     confirmCloseDialog.close();
-    taskForm.classList.toggle('hidden');
+    reset();
   });
 
   taskForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const dataArrIndex = taskData.findIndex((item) => item.id===currentTask.id);
-    const taskObj = {
+    //const dataArrIndex = taskData.findIndex((item) => item.id===currentTask.id);
+    /* const taskObj = {
         id: `${titleInput.value.toLowerCase().split(' ').join('-')}-${Date.now()}`, //add embedded expression
         title: titleInput.value,
         date: dateInput.value,
@@ -52,12 +98,22 @@ discardBtn.addEventListener('click', () => {
     };
     if(dataArrIndex === -1){
         taskData.unshift(taskObj);
-      }  taskData.forEach(({id, title, date, description}) => {tasksContainer.innerHTML += `${<div class='task' id='${id}'>
-        <p><strong>Title:</strong>${title}</p>
-        <p><strong>Date:</strong>${date}</p>
-        <p><strong>Description:</strong>${description}</p>
-        <button type="button" class="btn">Edit</button>
-        <button type="button" class="btn">Delete</button>
-        </div>}`});
-    taskForm.classList.toggle("hidden");
-  });
+      }   */
+     
+        /* taskData.forEach(
+            ({ id, title, date, description }) => {
+                tasksContainer.innerHTML += `
+                <div class="task" id="${id}">
+                  <p><strong>Title:</strong> ${title}</p>
+                  <p><strong>Date:</strong> ${date}</p>
+                  <p><strong>Description:</strong> ${description}</p>
+                  <button type="button" class="btn">Edit</button>
+                  <button type="button" class="btn">Delete</button>
+                </div>
+              `
+            }
+          ); */
+        
+        //  reset()
+        addOrUpdateTask();
+        });
