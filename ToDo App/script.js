@@ -11,7 +11,7 @@ const dateInput = document.getElementById('date-input');
 const descriptionInput = document.getElementById('description-input');
 
 
-const taskData = [];
+const taskData = JSON.parse(localStorage.getItem('data')) || [];
 
 let currentTask = {};
 
@@ -26,7 +26,10 @@ const addOrUpdateTask = () => {
   
     if (dataArrIndex === -1) {
       taskData.unshift(taskObj);
+    } else {
+        taskData[dataArrIndex] = taskObj;
     }
+    localStorage.setItem('data', JSON.stringify(taskData));
     updateTaskContainer();
     reset();
   };
@@ -53,9 +56,22 @@ const deleteTask = (buttonEl) => {
     const dataArrIndex = taskData.findIndex(item  => item.id === buttonEl.parentElement.id)
     buttonEl.parentElement.remove();
     taskData.splice(dataArrIndex, 1);
+    localStorage.setItem('data', JSON.stringify(taskData));
 };
 
+const editTask = (buttonEl) => {
+    const dataArrIndex = taskData.findIndex((item) => item.id === buttonEl.parentElement.id); 
+    currentTask = taskData[dataArrIndex];
+    titleInput.value = currentTask.title;
+    dateInput.value = currentTask.date;
+    descriptionInput.value = currentTask.description;
+    addOrUpdateTaskBtn.innerText = 'Update Task';
+    taskForm.classList.toggle('hidden');
+}
+
+
 const reset = () => {
+  addOrUpdateTaskBtn.innerText = "Add Task";
   titleInput.value = "";
   dateInput.value = "";
   descriptionInput.value = "";
@@ -63,16 +79,21 @@ const reset = () => {
   currentTask = {};
 }
 
+    if(taskData.length){
+        updateTaskContainer();
+    }
+
 //event listener with openTaskFormBtn variable and click event argument, with callback function
-openTaskFormBtn.addEventListener("click", () => {
+openTaskFormBtn.addEventListener("click", () => 
     taskForm.classList.toggle("hidden");
-  });
+  );
 
 closeTaskFormBtn.addEventListener("click", () => {
     const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
     //confirmCloseDialog.showModal();
+    const formInputValuesUpdated = titleInput.value !== currentTask.title || dateInput.value !== currentTask.date || descriptionInput.value !== currentTask.description;
     if (formInputsContainValues){
-        confirmCloseDialog.showModal();
+        confirmCloseDialog.showModal()  && formInputValuesUpdated;;
     } else {
         reset();
     }
@@ -117,3 +138,19 @@ discardBtn.addEventListener('click', () => {
         //  reset()
         addOrUpdateTask();
         });
+
+        /* const myTaskArr = [
+            { task: "Walk the Dog", date: "22-04-2022" },
+            { task: "Read some books", date: "02-11-2023" },
+            { task: "Watch football", date: "10-08-2021" },
+          ];
+          localStorage.setItem("data", JSON.stringify(myTaskArr));
+          //console.log(myTaskArr);
+          const getTaskArr = localStorage.getItem('data');
+          console.log(getTaskArr);
+
+          const getTaskArrObj = JSON.parse(localStorage.getItem("data"));
+          console.log(getTaskArrObj); */
+
+        // localStorage.removeItem('data');
+        // localStorage.clear();
