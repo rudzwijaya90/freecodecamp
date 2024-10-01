@@ -85,7 +85,7 @@ const reset = () => {
 
 //event listener with openTaskFormBtn variable and click event argument, with callback function
 openTaskFormBtn.addEventListener("click", () => 
-    taskForm.classList.toggle("hidden");
+    taskForm.classList.toggle("hidden")
   );
 
 closeTaskFormBtn.addEventListener("click", () => {
