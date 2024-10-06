@@ -1,0 +1,10 @@
+// Only change code below this line
+
+const increment = (number, value = 1) => {
+  return number + value;
+};
+
+// Test cases
+console.log(increment(5, 2)); // Outputs: 7
+console.log(increment(5));    // Outputs: 6
+// Only change code above this line
