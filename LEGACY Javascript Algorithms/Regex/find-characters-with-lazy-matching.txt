@@ -1,0 +1,10 @@
+let text = "<h1>Winter is coming</h1>";
+let myRegex = /<.*?>/; // Change this line
+let result = text.match(myRegex);
+
+/* console.log(result);
+
+Summary
+Greedy (.*): Matches as much as possible. return <h1>Winter is coming</h1>
+Lazy (.*?): Matches as little as possible. return just <h1>
+This distinction is particularly important when working with nested structures or when you want to extract specific segments from a string. */
