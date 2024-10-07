@@ -1,0 +1,6 @@
+import {uppercaseString, lowercaseString} from './string_functions.js';
+// import from the same directory as the current file 
+// Only change code above this line
+
+uppercaseString("hello");
+lowercaseString("WORLD!");
