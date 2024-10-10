@@ -1,0 +1,24 @@
+const users = {
+  Alan: {
+    online: false
+  },
+  Jeff: {
+    online: true
+  },
+  Sarah: {
+    online: false
+  }
+}
+
+function countOnline(allUsers) {
+  // Only change code below this line
+  let result = 0;
+  for (const name in allUsers){
+    if (allUsers[name].online === true){
+      result++;
+    } 
+  } return result;
+  // Only change code above this line
+}
+
+console.log(countOnline(users));

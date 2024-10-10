@@ -1,0 +1,22 @@
+function quickCheck(arr, elem) {
+  // Only change code below this line
+  if (arr.indexOf(elem) >= 0){
+    return true;
+  } else {
+    return false;
+  }
+  // Only change code above this line
+}
+
+console.log(quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'));
+
+// solution 2
+function quickCheck(arr, elem) {
+  return arr.indexOf(elem) >= 0 ? true : false;
+}
+
+// solution 3
+function quickCheck(arr, elem) {
+  return arr.indexOf(elem) != -1; //-1 means there is no same elements as in arr
+}
+
