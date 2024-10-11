@@ -1,0 +1,14 @@
+function repeatStringNumTimes(str, num) { 
+  let result = "";
+
+  while (num > 0) { // Loop until num is greater than 0
+    result += str; // Concatenate str to result
+    num--; // Decrement num
+  }
+
+  return result; // Return the final result
+}
+
+repeatStringNumTimes("abc", 3);
+console.log(repeatStringNumTimes("*", 8));
+console.log(repeatStringNumTimes("abc", -2));

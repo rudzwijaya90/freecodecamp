@@ -1,0 +1,7 @@
+function confirmEnding(str, target) {
+  return str.substring(str.length - target.length) === target;
+}
+
+//confirmEnding("Bastian", "n");
+console.log(confirmEnding("Congratulation", "on"));
+console.log(confirmEnding("Open sesame", "game"));
