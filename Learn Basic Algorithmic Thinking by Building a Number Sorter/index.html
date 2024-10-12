@@ -77,7 +77,10 @@
               aria-label="fourth number"
             >
               <option value="0">0</option>
-              <option value="1" selected>1</option>
+              <!-- The Sort button may appear to work correctly when clicked, 
+              but this is only because all the values in the array are single digits, 
+              and the sorting may not work as expected with more complex values. -->
+              <option value="10" selected>10</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
