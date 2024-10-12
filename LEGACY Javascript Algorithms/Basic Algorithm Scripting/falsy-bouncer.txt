@@ -1,0 +1,16 @@
+function bouncer(arr) {
+  let newArr = [];
+  for (let n of arr){
+    if (n){
+      newArr.push(n);
+    }
+  }
+  return newArr;
+}
+
+bouncer([7, "ate", "", false, 9]);
+
+// more simple solution from freecodecamp
+/* function bouncer(arr) {
+  return arr.filter(Boolean);
+} */

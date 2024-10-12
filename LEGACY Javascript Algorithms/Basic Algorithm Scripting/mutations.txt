@@ -1,0 +1,18 @@
+function mutation(arr) {
+  const newArr1 = arr[0].toLowerCase(); // Convert first string to lowercase
+  const newArr2 = arr[1].toLowerCase(); // Convert second string to lowercase
+
+  // Loop through each character in the second string
+  for (let char of newArr2) {
+    // Check if the character is not found in the first string
+    if (newArr1.indexOf(char) === -1) {
+      return false; // Return false if any character is not found
+    }
+  }
+  
+  return true; // All characters were found
+}
+
+// Usage
+console.log(mutation(["hello", "hey"])); // Output: false
+console.log(mutation(["zyxwvutsrqponmlkjihgfedcba", "qrstu"])); // Output: true
