@@ -1,0 +1,10 @@
+function checkPositive(arr) {
+  // Only change code below this line
+  let newArr = arr.some(num => num > 0)
+  return newArr;
+  // Only change code above this line
+}
+
+console.log(checkPositive([1, 2, 3, -4, 5])); //return true
+
+console.log(checkPositive([-1, -2, -3, -4, -5]))
