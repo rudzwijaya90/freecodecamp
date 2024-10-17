@@ -1,0 +1,17 @@
+function diffArray(arr1, arr2) {
+  let newArr = [];
+  const combinedArray = arr1.concat(arr2);
+  
+  for (let i = 0; i < combinedArray.length; i++){
+    const element = combinedArray[i];
+    // Check if the element is not in both arrays
+        if (!arr1.includes(element) || !arr2.includes(element)) {
+            newArr.push(element);
+        }
+    } return newArr;
+} 
+
+console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+console.log(diffArray(["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"]));
+console.log(diffArray([1, "calf", 3, "piglet"], [7, "filly"]));
+console.log(diffArray([], ["snuffleupagus", "cookie monster", "elmo"]))
