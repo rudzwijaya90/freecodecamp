@@ -1,0 +1,37 @@
+function convertToRoman(num) {
+  let method = "";
+  const romanValues = [
+        { value: 1000, numeral: 'M' },
+        { value: 900, numeral: 'CM' },
+        { value: 500, numeral: 'D' },
+        { value: 400, numeral: 'CD' },
+        { value: 100, numeral: 'C' },
+        { value: 90, numeral: 'XC' },
+        { value: 50, numeral: 'L' },
+        { value: 40, numeral: 'XL' },
+        { value: 10, numeral: 'X' },
+        { value: 9, numeral: 'IX' },
+        { value: 5, numeral: 'V' },
+        { value: 4, numeral: 'IV' },
+        { value: 1, numeral: 'I' }
+    ];
+  
+    // If num is 0, return an error message and stop further execution
+    if (num === 0) {
+        //console.log("Please Insert a Number more Than Zero");
+        return "Please Insert a Number"; // Return warning
+    } 
+      
+    // Loop through the romanValues array to build the Roman numeral
+    for (let i = 0; i < romanValues.length; i++) {
+        while (num >= romanValues[i].value) {
+            method += romanValues[i].numeral;
+            num -= romanValues[i].value;
+        } 
+    } return method;
+} 
+
+// Example usage
+console.log(convertToRoman(0));   // Output: "Please Insert a Number more Than Zero"
+console.log(convertToRoman(36));  // Output: "XXXVI"
+console.log(convertToRoman(1989)); // Output: "MCMLXXXIX"
