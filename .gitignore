@@ -1,0 +1,4 @@
+# Ignore specific SSH keys
+git_rudi
+git_rudi.pub
+*.pub

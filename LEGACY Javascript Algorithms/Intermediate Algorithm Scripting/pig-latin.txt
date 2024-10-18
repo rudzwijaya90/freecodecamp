@@ -1,0 +1,31 @@
+function translatePigLatin(str) {
+  const vow = ['a', 'e', 'i', 'o', 'u'];
+  // Check if the first character is a vowel
+  if (vow.indexOf(str[0]) !== -1) {
+    return `${str}way`; // If it starts with a vowel
+  } 
+  
+  // Check for vowels in the rest of the string
+  for (let i = 1; i < str.length; i++) {
+    if (vow.indexOf(str[i]) !== -1) {
+      return `${str.slice(i)}${str.slice(0, i)}ay`; // Move the first consonant cluster to the end and add "ay"
+    }
+  }
+  
+  // If no vowels are found, you could return the original string or handle it differently
+  return `${str}ay`; // For words without vowels, return the original string with "ay"
+}
+
+
+
+//FreeCodeCamp solution
+function translatePigLatin(str) {
+  return str
+    .replace(/^[aeiou]\w*/, "$&way")
+    .replace(/(^[^aeiou]+)(\w*)/, "$2$1ay");
+}
+
+translatePigLatin("consonant");
+translatePigLatin("algorithm");
+translatePigLatin("schwartz");
+translatePigLatin("california");

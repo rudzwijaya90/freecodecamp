@@ -1,0 +1,20 @@
+function spinalCase(str) {
+  const newStr = str.split(/(?<=[a-z])(?=[A-Z])|[-_]/).join(" ").toLowerCase();
+  return newStr.split(" ").join("-");
+}
+
+//console.log(spinalCase('This Is Spinal Tap'));
+console.log(spinalCase("AllThe-small Things"));
+//console.log(spinalCase("The_Andy_Griffith_Show"));
+
+
+//FreeCodeCamp Solution
+function spinalCase(str) {
+  // "It's such a fine line between stupid, and clever."
+  // --David St. Hubbins
+
+  return str
+    .split(/\s|_|(?=[A-Z])/)
+    .join("-")
+    .toLowerCase();
+}
