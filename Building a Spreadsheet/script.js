@@ -15,8 +15,14 @@ const median = nums => {
     const middle = length / 2 - 1;
     return isEven(length) ? 
         average([sorted[middle], sorted[middle + 1]]) : 
-        sorted[Math.ceil(middle)];  
+        sorted[Math.ceil(middle)];  //step 25
 }
+
+const spreadsheetFunctions = {
+    sum,
+    average,
+    median,
+  };
  
 const range = (start, end) => Array(end - start + 1).fill(start).map((element, index) => element + index);
     
@@ -50,7 +56,12 @@ window.onload = () => {
         input.type = "text";
         input.id = letter + number;
         input.ariaLabel = letter + number;
+        input.onchange = update; //onchange property, you need to tell your input elements to call the update function when the value changes, step 28
         container.appendChild(input);
     });
   });
+};
+
+const update = (event) => {
+    const element = event.target;
 };
