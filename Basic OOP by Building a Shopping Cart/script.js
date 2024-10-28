@@ -134,11 +134,35 @@ class ShoppingCart {
     getCounts() {
       return this.items.length;
     };
-    calculateTotal(){
-        const subTotal = this.items.reduce((total, item) => total + item.price, 0);
+    clearCart() {
+        if (!this.items.length) {
+            alert("Your shopping cart is already empty");
+            return;
+        };
+        const isCartCleared = confirm(
+            "Are you sure you want to clear all items from your shopping cart?"
+        );
+        if (isCartCleared){
+            this.items = [];
+            this.total = 0;
+            productsContainer.innerHTML = "";
+            totalNumberOfItems.textContent = 0;
+            cartSubTotal.textContent = 0;
+            cartTaxes.textContent = 0;
+            cartTotal.textContent = 0;
+        }
     };
     calculateTaxes(amount){
-        return (this.taxRate / 100) * amount;
+        return parseFloat(((this.taxRate / 100) * amount).toFixed(2)); //toFixed round to 2 decimal, parseFloat return string to a number 
+    };
+    calculateTotal(){
+        const subTotal = this.items.reduce((total, item) => total + item.price, 0);
+        const tax = this.calculateTaxes(subTotal);
+        this.total = subTotal + tax;
+        cartSubTotal.textContent = `$${subTotal.toFixed(2)}`;
+        cartTaxes.textContent = `$${tax.toFixed(2)}`;
+        cartTotal.textContent = `$${this.total.toFixed(2)}`;
+        return this.total;
     };
   };
 
@@ -149,6 +173,7 @@ class ShoppingCart {
         btn.addEventListener("click", (event) => {
             cart.addItem(Number(event.target.id), products);
             totalNumberOfItems.textContent = cart.getCounts();
+            cart.calculateTotal();
         })
       }
     );
@@ -158,3 +183,5 @@ class ShoppingCart {
         showHideCartSpan.textContent = isCartShowing ? "Hide" : "Show";
         cartContainer.style.display = isCartShowing ? "block" : "none";
     });
+
+    clearCartBtn.addEventListener("click", cart.clearCart.bind(cart));
