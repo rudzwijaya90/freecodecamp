@@ -11,6 +11,7 @@ const cartTotal = document.getElementById("total");
 
 const showHideCartSpan = document.getElementById("show-hide-cart");
 let isCartShowing = false;
+
 const products = [
     {
         id: 1,
@@ -86,3 +87,74 @@ const products = [
     },
 ];
 
+products.forEach(({ name, id, price, category }) => { //destructuring parameters
+    //step 10
+    dessertCards.innerHTML += `
+    <div class="dessert-card">
+        <h2>${name}</h2>
+        <p class="dessert-price">$${price}</p>
+        <p class="product-category">Category: ${category}</p>
+        <button 
+            id="${id}" 
+            class="btn add-to-cart-btn">Add to cart
+            </button>
+    </div>
+    `;
+});
+
+/* In JavaScript, a class is like a blueprint for creating objects. 
+It allows you to define a set of properties and methods, and instantiate (or create) new objects with those properties and methods */
+class ShoppingCart {
+    constructor() {
+      this.items = [];
+      this.total = 0;
+      this.taxRate = 8.25;
+    }
+    addItem(id, products) {
+      const product = products.find((item) => item.id === id);
+      const { name, price } = product; //destructuring name and price
+      this.items.push(product);
+      const totalCountPerProduct = {};
+      this.items.forEach((dessert) => {
+        totalCountPerProduct[dessert.id] =
+          (totalCountPerProduct[dessert.id] || 0) + 1;
+      });
+      const currentProductCount = totalCountPerProduct[product.id];
+      const currentProductCountSpan = document.getElementById(
+        `product-count-for-id${product.id}`
+      );
+      currentProductCount > 1 //to check if product is already in the cart or not
+        ? (currentProductCountSpan.textContent = `${currentProductCount}x`)
+        : (productsContainer.innerHTML += `
+          <div id="dessert${id}" class="product">
+              <p><span class="product-count" id="product-count-for-id${id}"></span>${name}</p>
+              <p>${price}</p>
+          </div>`);
+    };
+    getCounts() {
+      return this.items.length;
+    };
+    calculateTotal(){
+        const subTotal = this.items.reduce((total, item) => total + item.price, 0);
+    };
+    calculateTaxes(amount){
+        return (this.taxRate / 100) * amount;
+    };
+  };
+
+  const cart = new ShoppingCart();
+  const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
+  [...addToCartBtns].forEach(       //spread addToCartBtns
+    (btn) => {
+        btn.addEventListener("click", (event) => {
+            cart.addItem(Number(event.target.id), products);
+            totalNumberOfItems.textContent = cart.getCounts();
+        })
+      }
+    );
+
+    cartBtn.addEventListener("click", () => {
+        isCartShowing = !isCartShowing;
+        showHideCartSpan.textContent = isCartShowing ? "Hide" : "Show";
+        cartContainer.style.display = isCartShowing ? "block" : "none";
+    });
